@@ -1,3 +1,5 @@
+from mindmap.manager import MindMap
+
 # ===============================================================
 # MODULE : storage.py
 # DESCRIPTION : Gère la sérialisation et la désérialisation des cartes mentales
@@ -44,7 +46,6 @@ def save_mindmap(mindmap, filename):
 def load_mindmap(filename):
     with open(filename, 'r') as f:
         data = json.load(f)
-    from mindmap.manager import MindMap
     mindmap = MindMap(data['name'])
     mindmap.root = dict_to_node(data)
     return mindmap

@@ -5,8 +5,8 @@
 #     Permet de créer, afficher, modifier, sauvegarder et charger une carte.
 #
 # COMMANDES :
-#     - create <nom> <titre>           : Crée une nouvelle carte mentale
-#     - add <parent> <nom> <titre>     : Ajoute un noeud sous un parent
+#     - create <nom> <desciprion>           : Crée une nouvelle carte mentale
+#     - add <parent> <nom> <descrription>     : Ajoute un noeud sous un parent
 #     - remove <nom>                   : Supprime un noeud par son nom
 #     - display                        : Affiche la carte
 #     - find <nom>                     : Recherche le chemin d’un noeud
@@ -29,8 +29,8 @@ from mindmap.storage import save_mindmap, load_mindmap
 def print_help():
     print("""
 Commandes disponibles :
-  create <nom> <titre>            - Créer une nouvelle carte mentale
-  add <parent> <nom> <titre>      - Ajouter un noeud
+  create <nom> <description>            - Créer une nouvelle carte mentale
+  add <parent> <nom> <description>      - Ajouter un noeud
   remove <noeud>                  - Supprimer un noeud
   display                         - Afficher la carte
   find <noeud>                    - Trouver le chemin d'un noeud spécifique
@@ -70,13 +70,13 @@ def main():
             elif cmd == 'create':
                 parts = command.split(" ", 2)
                 if len(parts) < 3:
-                    print("Usage : create <nom> <titre>")
+                    print("Usage : create <nom> <description>")
                     continue
                 name = parts[1]
                 description = parts[2]
                 prompt = "(unsaved) >> "
                 mindmap = MindMap(name, description)
-                print(f"Nouvelle carte créée avec la racine '{name}' et le titre '{description}'.")
+                print(f"Nouvelle carte créée avec la racine '{name}' et la description '{description}'.")
 
             elif cmd == 'add':
                 parts = command.split(" ", 3)
@@ -93,7 +93,7 @@ def main():
 
                 added = mindmap.add_node_by_parent(parent, name, description)
                 if added:
-                    print(f"Noeud '{name}' ajouté sous '{parent}' avec le titre '{description}'.")
+                    print(f"Noeud '{name}' ajouté sous '{parent}' avec la description '{description}'.")
                 else:
                     print(f"Parent '{parent}' introuvable ou nom déjà utilisé.")
 
